@@ -1,3 +1,3 @@
 # Algorithms-and-Data-Structures
 
-# My Algorithms & CP Archive
+Here, I post my Algorithms & CP Archive just for fun :)
