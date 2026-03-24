@@ -1,0 +1,20 @@
+struct Rect {
+    int x1, y1, x2, y2;
+    void read() { cin >> x1 >> y1 >> x2 >> y2;}
+    int area() {return (y2 - y1) * (x2 - x1);}
+};
+
+int intersect(Rect a, Rect b) {
+    int xOverlap = max(min(a.x2, b.x2) - max(a.x1, b.x1), 0);
+    int yOverlap = max(min(a.y2, b.y2) - max(a.y1, b.y1), 0);
+    return xOverlap * yOverlap;
+}
+
+void solve() {
+    Rect a,b,t;
+    a.read();
+    b.read();
+    t.read();
+    
+    cout << a.area() + b.area() - intersect(a, t) - intersect(b, t) << "\n";
+}
