@@ -1,0 +1,37 @@
+vector<ll> psum(const vector<ll> &arr) {
+    vector<ll> prefix_arr(arr.size() + 1, 0);
+    for(int i = 1; i < arr.size(); i++) {
+        prefix_arr[i] = prefix_arr[i - 1] + arr[i];
+    }
+    return prefix_arr;
+}
+
+
+int pref[100005][4];
+
+struct Rect {
+    int x1, y1, x2, y2;
+    void read() { cin >> x1 >> y1 >> x2 >> y2;}
+    int area() {return (y2 - y1) * (x2 - x1);}
+};
+
+int intersect(Rect a, Rect b) {
+    int xOverlap = max(min(a.x2, b.x2) - max(a.x1, b.x1), 0);
+    int yOverlap = max(min(a.y2, b.y2) - max(a.y1, b.y1), 0);
+    return xOverlap * yOverlap;
+}
+
+void solve() {
+    Rect a, b;
+    a.read();
+    b.read();
+    
+    int x_min = min(a.x1, b.x1);
+    int x_max = max(a.x2, b.x2);
+    int y_min = min(a.y1, b.y1);
+    int y_max = max(a.y2, b.y2);
+
+    
+    int side = max(x_max - x_min, y_max - y_min);
+    cout << side * side << "\n";
+}
