@@ -1,0 +1,37 @@
+struct Rect {
+    int x1, y1, x2, y2;
+    void read() { cin >> x1 >> y1 >> x2 >> y2;}
+    int area() {return (y2 - y1) * (x2 - x1);}
+};
+
+int intersect(Rect a, Rect b) {
+    int xOverlap = max(min(a.x2, b.x2) - max(a.x1, b.x1), 0);
+    int yOverlap = max(min(a.y2, b.y2) - max(a.y1, b.y1), 0);
+    return xOverlap * yOverlap;
+}
+
+void solve() {
+    Rect a, b;
+    a.read();
+    b.read();
+    
+    int x_left = max(a.x1, b.x1);
+    int x_right = min(a.x2, b.x2);
+    int y_bottom = max(a.y1, b.y1);
+    int y_top = min(a.y2,b.y2);
+    
+    int inter_w = max(0, x_right - x_left);
+    int inter_h = max(0, y_top - y_bottom);
+    int inter_area = inter_h * inter_w;
+    
+    
+    if (inter_w == (a.x2 - a.x1) && inter_h == (a.y2 - a.y1)) {
+        cout << 0 << "\n";
+    }else if (inter_w == (a.x2 - a.x1) && (y_top == a.y2 || y_bottom == a.y1)) {
+        cout << a.area() - inter_area << "\n";
+    }else if (inter_h == (a.y2 - a.y1) && (x_left == a.x1 || x_right == a.x2)) {
+        cout << a.area() - inter_area << "\n";
+    }else {
+        cout << a.area() << "\n";
+    }
+}
