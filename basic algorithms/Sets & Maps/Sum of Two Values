@@ -1,0 +1,28 @@
+void solve() {
+    int n, x;
+    cin >> n >> x;
+    
+    vector<pair<int, int>> res(n);
+    
+    for(int i = 0; i < n; ++i) {
+        cin >> res[i].first;
+        res[i].second = i + 1;
+    }
+    
+    sort(res.begin(), res.end());
+    
+    int l = 0, r = n - 1;
+    
+    while(l < r) {
+        int sum = res[l].first + res[r].first;
+        if (sum == x) {
+            cout << res[l].second << " " << res[r].second << "\n";
+            return;
+        }
+        
+        if (sum < x) l++;
+        else r--;
+    }
+    
+    cout << "IMPOSSIBLE" << "\n";
+}
