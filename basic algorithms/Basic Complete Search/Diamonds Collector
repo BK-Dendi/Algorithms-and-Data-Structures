@@ -1,0 +1,29 @@
+void solve() {
+    int n, k;
+    cin >> n >> k;
+    vector<int> res(n);
+    for(int i = 0; i < n; i++) {
+        cin >> res[i];
+    }
+    sort(res.begin(), res.end());
+    
+    
+    int cnt = 0;
+    for(int i = 0; i < n; i++) {
+        int curr = 0;
+        
+        for(int j = i; j < n; j++) {
+            if (res[j] - res[i] <= k) {
+                curr++;
+            }else {
+                break;
+            }
+        }
+        
+        if (curr > cnt) {
+            cnt = curr;
+        }
+    }
+    
+    cout << cnt << "\n";
+}
