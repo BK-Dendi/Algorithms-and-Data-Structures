@@ -1,0 +1,17 @@
+void solve() {
+    ll x, y,m;
+    cin >> x >> y >> m;
+    ll ans = 0;
+    for(ll i = 0; i * x <= m; i++) {
+        ll sum = i * x;
+        ll rem = m - i * x;
+        
+        ll j = rem / y;
+        ll total = sum + j * y;
+        
+        
+        ans = max(ans, total);
+    }
+    
+    cout << ans << "\n";
+}
