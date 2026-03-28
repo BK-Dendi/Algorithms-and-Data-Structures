@@ -1,0 +1,31 @@
+struct Rect {
+    ll x1, y1, x2, y2;
+    void read() { cin >> x1 >> y1 >> x2 >> y2;}
+    ll area() {
+        if (x1 >= x2 || y1 >= y2) return 0;
+        
+        return (x2 - x1) * (y2 - y1);
+    }
+};
+
+Rect get_intersect(Rect a, Rect b) {
+    return {max(a.x1, b.x1), max(a.y1, b.y1), min(a.x2, b.x2), min(a.y2, b.y2)};
+}
+
+
+void solve() {
+    Rect x, a, b;
+    x.read();
+    a.read();
+    b.read();
+    Rect w = get_intersect(x, get_intersect(a, b));
+    Rect a_x = get_intersect(a, x);
+    Rect b_x = get_intersect(x, b);
+    
+    if (x.area() > a_x.area() + b_x.area() - w.area()) {
+        cout << "YES";
+    }else {
+        cout << "NO";
+    }
+    cout << "\n";
+}
