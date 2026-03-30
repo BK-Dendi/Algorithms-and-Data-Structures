@@ -1,0 +1,24 @@
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    vector<vector<ll>> res(m, vector<ll>(n));
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < m; ++j) {
+            cin >> res[j][i];
+        }
+    }
+    
+    ll total = 0;
+    
+    for(int j = 0; j < m; ++j) {
+        sort(res[j].begin(), res[j].end());
+        ll pref = 0;
+        for(int i = 0; i < n; ++i) {
+            ll curr = res[j][i];
+            total += curr * i - pref;
+            pref += curr;
+        }
+    }
+    cout << total << "\n";
+
+}
