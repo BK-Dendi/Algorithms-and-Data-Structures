@@ -1,0 +1,34 @@
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> res(2 * n);
+    for(int i = 0; i < 2 * n; ++i) {
+        cin >> res[i];
+    }
+    sort(res.begin(), res.end());
+    
+    
+    int min_ans = 1e9;
+    for(int i = 0; i < 2 * n; ++i) {
+        for(int j =  i + 1; j < 2 *n; ++j) {
+            vector<int> rem;
+            for(int k = 0; k < 2 * n; ++k) {
+                if (k != i && k != j) {
+                    rem.push_back(res[k]);
+                }
+            }
+            
+            int curr = 0;
+            for(int k = 0; k < rem.size(); k+= 2) {
+                curr += rem[k + 1] - rem[k];
+            }
+            
+            
+            if (min_ans > curr) {
+                min_ans = curr;
+            }
+        }
+    }
+    
+    cout << min_ans  << "\n";
+}
