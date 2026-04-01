@@ -1,0 +1,27 @@
+void solve() {
+    ll n;
+    cin >> n;
+    vector<ll> res(n);
+    
+    for(int i = 0; i < n; i++) {
+        cin >> res[i];
+    }
+    
+    sort(res.begin(), res.end());
+    
+    
+    ll max_val = 0;
+    ll choice = 0;
+    
+    for(int i = 0; i < n; ++i) {
+        ll curr = res[i];
+        
+        ll curr_val = curr * (n - i);
+        
+        if (max_val < curr_val) {
+            max_val = curr_val;
+            choice = curr;
+        }
+    }
+    cout << max_val << " " << choice << "\n";
+}
