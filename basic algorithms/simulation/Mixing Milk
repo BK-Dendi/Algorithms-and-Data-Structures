@@ -1,0 +1,20 @@
+void solve() {
+    vector<int> C(3);
+    vector<int> A(3);
+    for(int i = 0; i < 3; i++) {
+        cin >> C[i] >> A[i];
+    }
+    
+  
+    for(int i = 0; i < 100; i++) {
+        int idx1 = i % 3;
+        int idx2 = (i + 1) % 3;
+        int amt = min(A[idx1], C[idx2] - A[idx2]);
+        A[idx1] -= amt;
+        A[idx2] += amt;
+    }
+    
+    for(int i = 0; i < 3; i++) {
+        cout << A[i] << "\n";
+    }
+}
