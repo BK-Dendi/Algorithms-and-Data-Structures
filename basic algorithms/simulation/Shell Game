@@ -1,0 +1,23 @@
+void solve() {
+    int n;
+    scanf("%d", &n);
+    vector<int> pos(3);
+    
+    for(int i = 0; i < 3; i++) {
+        pos[i] = i;
+    }
+    
+    vector<int> cnt(3);
+    
+    for(int i = 0; i < n; i++) {
+        int a,b,g;
+        scanf("%d %d %d", &a, &b, &g);
+        a--; b--; g--;
+        
+        swap(pos[a], pos[b]);
+        
+        cnt[pos[g]]++;
+    }
+    
+    cout << max({cnt[0], cnt[1], cnt[2]}) << "\n";
+}
