@@ -1,0 +1,31 @@
+void solve() {
+    int n, m;
+    cin >> n >> m;
+    int ans = 0;
+    vector<int> limit(100);
+    vector<int> cow(100);
+    int start = 0;
+    for(int i = 0; i < n; i++) {
+        int len, speed;
+        cin >> len >> speed;
+        for(int j = start; j < start + len; j++) {
+            limit[j] = speed;
+        }
+        start += len;
+    }
+    start = 0;
+    for(int i = 0; i < m; i++) {
+        int len, speed;
+        cin >> len >> speed;
+        for(int j = start; j < start + len; j++) {
+            cow[j]  = speed;
+        }
+        start += len;
+    }
+    
+    for(int i = 0; i < 100; i++) {
+        ans = max(ans, cow[i] - limit[i]);
+    }
+    cout << ans << "\n";
+    
+}
